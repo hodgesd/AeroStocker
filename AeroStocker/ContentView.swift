@@ -47,7 +47,6 @@ struct StockItem2: Identifiable {
     var id : Int
     var standard, title, category, zone: String
     var needed :Int = 0
-
 }
 
 func update(_ stockItem2: inout StockItem2) {
@@ -76,11 +75,11 @@ struct ItemData {
     
     init() {
         // create some stock items
-        var first = StockItem2(id: 0, standard: "4", title: "Absolute", category: "Alcohol", zone: "Credenza", needed: 1)
-        var second = StockItem2(id: 1, standard: "full", title: "Spoons", category: "Utinsil", zone: "Galley Left", needed: 2)
-        var third = StockItem2(id: 2, standard: "6", title: "Coca Cola", category: "Beverage", zone: "Credenza", needed: 3)
-        var fourth = StockItem2(id: 3, standard: "full", title: "Forks", category: "Utinsil", zone: "Galley Left", needed: 4)
-        var fifth = StockItem2(id: 4, standard: "3", title: "Red Wine", category: "Alcohol", zone: "Credenza", needed: 0)
+        let first = StockItem2(id: 0, standard: "4", title: "Absolute", category: "Alcohol", zone: "Credenza", needed: 1)
+        let second = StockItem2(id: 1, standard: "full", title: "Spoons", category: "Utinsil", zone: "Galley Left", needed: 2)
+        let third = StockItem2(id: 2, standard: "6", title: "Coca Cola", category: "Beverage", zone: "Credenza", needed: 3)
+        let fourth = StockItem2(id: 3, standard: "full", title: "Forks", category: "Utinsil", zone: "Galley Left", needed: 4)
+        let fifth = StockItem2(id: 4, standard: "3", title: "Red Wine", category: "Alcohol", zone: "Credenza", needed: 0)
 
         // Create an array of the occurrence objects and then sort them
         // this makes sure that they are in ascending date order
@@ -90,11 +89,11 @@ struct ItemData {
         // We use the Dictionary(grouping:) function so that all the events are
         // group together, one downside of this is that the Dictionary keys may
         // not be in order that we require, but we can fix that
-        var grouped = Dictionary(grouping: items) { (stockitem2: StockItem2) -> String in
+        let grouped = Dictionary(grouping: items) { (stockitem2: StockItem2) -> String in
             stockitem2.category
         }
         
-        var groupedZone = Dictionary(grouping: items) { (stockitem2: StockItem2) -> String in
+        let groupedZone = Dictionary(grouping: items) { (stockitem2: StockItem2) -> String in
             stockitem2.zone
         }
         
@@ -221,17 +220,11 @@ struct ItemRow: View {
                 Stepper(value: $numberOfItems, in: 0...10, label: { Text("\(numberOfItems)")
                         }).padding(.horizontal)
 
-                
+
 //                test @statw
 //                Stepper(value: $item.needed, in: 0...10, label: { Text("\(item.needed)")
 //
 //                        }).padding(.horizontal)
-                
-                
-                
-            //        item.title = "3"
-//                        update(item.needed)
-            
           //      item.needed = numberOfItems
             }
             
