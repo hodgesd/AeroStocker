@@ -108,7 +108,7 @@ struct ItemData {
         }.sorted { $0.title < $1.title }
         self.sectionsZones = groupedZone.map { zone -> Zone in
             Zone(title: zone.key, stockItems2: zone.value)
-        }.sorted { $0.title < $1.title }
+        }.sorted { $0.title < $1.title}
         self.stock = items
     }
 }
@@ -168,15 +168,15 @@ struct StockViewer : View {
                         ForEach(items.sectionsZones) { sectionsZones in
                             Section(header: Text(sectionsZones.title)) {
 
-//                                without @state
+                                //                                without @state
                                 ForEach(sectionsZones.stockItems2) { stockItem2 in
                                     ItemRow(item: stockItem2)
                                 }
-                                   
-//                                with @state
-//                                ForEach(sectionsZones.stockItems2, id: \.self, content: { stockItem2 in
-//                                        ItemRow(item: stockItem2)
-//                                }
+
+                                //                                with @state
+                                //                                ForEach(sectionsZones.stockItems2, id: \.self, content: { stockItem2 in
+                                //                                        ItemRow(item: stockItem2)
+                                //                                }
                             }
                         }
                     }
@@ -185,8 +185,8 @@ struct StockViewer : View {
         }
     }
 }
-    
-    struct ItemDetail: View {
+
+struct ItemDetail: View {
     let item: StockItem2
 
     var body: some View {
@@ -196,40 +196,32 @@ struct StockViewer : View {
 
 struct ItemRow: View {
     @State private var numberOfItems: Int = 0
-//    @State private var checkState:Bool = false
+    //    @State private var checkState:Bool = false
 
- @State var item: StockItem2
+    var item: StockItem2
     
     var body: some View {
-            HStack(spacing: 10) {
-                self.numberOfItems = item.needed
-                Rectangle()
-                    .fill((self.numberOfItems > 0) ? Color.green : Color.red)
-                    .frame(width:20, height:20, alignment: .center)
-                    .cornerRadius(5)
-                
-                Text(item.title)
-                    .frame (width:80, alignment: .leading)
-                Text("\(item.standard)")
-                    .foregroundColor(Color.gray)
-                    .frame(width:40, alignment: .center)
-                    .font(.subheadline)
-                Spacer()
-//                  working
-
-                Stepper(value: $numberOfItems, in: 0...10, label: { Text("\(numberOfItems)")
-                        }).padding(.horizontal)
-
-
-//                test @statw
-//                Stepper(value: $item.needed, in: 0...10, label: { Text("\(item.needed)")
-//
-//                        }).padding(.horizontal)
-          //      item.needed = numberOfItems
+        HStack(spacing: 10) {
+       //     self.numberOfItems = item.needed
+            Rectangle()
+                .fill((self.numberOfItems > 0) ? Color.green : Color.red)
+                .frame(width:20, height:20, alignment: .center)
+                .cornerRadius(5)
+            Text(item.title)
+                .frame (width:80, alignment: .leading)
+            Text("\(item.standard)")
+                .foregroundColor(Color.gray)
+                .frame(width:40, alignment: .center)
+                .font(.subheadline)
+            Spacer()
+            //                 was working
+//            Stepper(value: $numberOfItems, in: 0...10, label: { Text("\(numberOfItems)")
+//            }).padding(.horizontal)
+                        //                 trying working
+            Stepper(value: $numberOfItems, in: 0...10){
+                Text("\(numberOfItems)")
             }
-            
-            
-        //}//.foregroundColor(Color.white)
+        }
     }
 }
 
